@@ -6,6 +6,94 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Tipografi yang tegas dan mudah dibaca di layar desktop maupun HP */
+    --font-sans: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+
+    /* Palet Warna SIPOS RW 15 (Ramah Pra-Lansia, Sejuk, Kontras Tinggi) */
+    --color-teal-primary: #0F766E;
+    --color-teal-hover: #115E59;
+    --color-teal-dark: #134E4A;
+    --color-mint-soft: #F0FDFA;
+    --color-mint-border: #99F6E4;
+    --color-bg-neutral: #F8FAFC;
+    --color-text-slate: #1E293B;
+    --color-text-muted: #475569;
+    --color-amber-warn: #F59E0B;
+    --color-rose-risk: #E11D48;
+}
+
+@layer base {
+    html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        background-color: #F8FAFC;
+        color: #1E293B;
+        font-size: 1rem;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* Indikator fokus jelas untuk navigasi keyboard & aksesibilitas */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        outline: 3px solid #0F766E;
+        outline-offset: 2px;
+    }
+}
+
+@layer components {
+    /* Tombol sentuh lega (minimal tinggi 48px, wajib ikon + teks) */
+    .btn-sipos {
+        @apply inline-flex items-center justify-center gap-2.5 min-h-[48px] px-5 py-3 rounded-xl text-[16px] font-semibold leading-snug transition-colors duration-150 cursor-pointer select-none;
+    }
+
+    .btn-primary {
+        @apply bg-[#0F766E] text-white hover:bg-[#115E59] active:bg-[#134E4A] shadow-sm;
+    }
+
+    .btn-secondary {
+        @apply bg-white text-[#1E293B] border-2 border-slate-300 hover:bg-[#F0FDFA] hover:border-[#0F766E] hover:text-[#0F766E];
+    }
+
+    .btn-warning {
+        @apply bg-[#FFFBEB] text-[#78350F] border-2 border-[#F59E0B] hover:bg-[#FEF3C7];
+    }
+
+    .btn-danger {
+        @apply bg-[#E11D48] text-white hover:bg-[#BE123C] shadow-sm;
+    }
+
+    /* Kartu konten teduh dan rapi */
+    .card-sipos {
+        @apply bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6;
+    }
+
+    .card-mint {
+        @apply bg-[#F0FDFA] rounded-2xl border-2 border-[#99F6E4] p-5 sm:p-6;
+    }
+
+    /* Elemen formulir ramah penglihatan */
+    .form-label {
+        @apply block text-[16px] font-bold text-[#1E293B] mb-2;
+    }
+
+    .form-hint {
+        @apply mt-1.5 text-[15px] text-[#475569];
+    }
+
+    .form-input {
+        @apply w-full min-h-[48px] px-4 py-3 text-[16px] text-[#1E293B] bg-white border-2 border-slate-300 rounded-xl transition-colors placeholder:text-slate-500 focus:border-[#0F766E] focus:outline-none;
+    }
+
+    /* Lencana status minimal 15px agar terbaca jelas */
+    .badge-sipos {
+        @apply inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[15px] font-semibold leading-none;
+    }
 }
